@@ -6,7 +6,10 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "check": "node scripts/check.mjs"
+    "check": "node scripts/check.mjs",
+    "test:api": "node tests/api-flow.mjs"
   },
-  "devDependencies": { "esbuild": "^0.25.9" }
+  "devDependencies": {
+    "esbuild": "^0.25.9"
+  }
 }
