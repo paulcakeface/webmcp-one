@@ -1,0 +1,14 @@
+{
+  "name": "webmcp-one-api",
+  "main": "dist/api/worker.mjs",
+  "compatibility_date": "2026-08-26",
+  "account_id": "4e0762c05c0185f9a2e9026b4d46c326",
+  "workers_dev": true,
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "webmcp-one-demo",
+      "database_id": "c5b4999a-d315-4cff-bf00-55a26bbc3d56"
+    }
+  ]
+}

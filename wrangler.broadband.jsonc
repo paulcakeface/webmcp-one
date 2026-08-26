@@ -1,0 +1,7 @@
+{
+  "name": "webmcp-one-broadband",
+  "main": "dist/broadband/worker.js",
+  "compatibility_date": "2026-08-26",
+  "account_id": "4e0762c05c0185f9a2e9026b4d46c326",
+  "workers_dev": true
+}
