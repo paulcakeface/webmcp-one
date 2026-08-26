@@ -12,6 +12,8 @@ Start at the ONE Mission Board:
 
 **https://webmcp-one-mission.paul-phillips1988.workers.dev**
 
+**Production acceptance:** the complete four-tab headed Chrome 151 WebMCP judge flow passed on 27 Aug 2026, including human override, stale-intent recovery, provider failure recovery, approval gating and all three simulated confirmations. See [`docs/full-production-webmcp-acceptance.md`](docs/full-production-webmcp-acceptance.md).
+
 The demo mission is moving house. ONE creates an isolated mission and connects it to three independent top-level sites:
 
 - **Northstar Broadband** — search, reversible hold, simulated confirmation.

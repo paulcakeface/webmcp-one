@@ -15,3 +15,17 @@ const edit=await call(`/api/mission/${id}`,{method:'PATCH',origin:O.mission,body
 const stale=await call(`/api/progress/${id}`);eq(stale.data.broadband.status,'stale','old broadband becomes stale');eq(stale.data.movers.status,'stale','old mover becomes stale');eq(stale.data.energy.status,'stale','old energy becomes stale');eq(stale.data.approval.status,'stale','old approval becomes stale');
 const reapprove=await call(`/api/approval/${id}`,{method:'POST',origin:O.mission});eq(reapprove.status,409,'cannot approve stale provider resources');eq(reapprove.data.code,'PLAN_NOT_READY','stale resources require re-plan');
 console.log('ALL API FLOW CHECKS PASS',id);
+
+console.log('\nJUDGE CHOREOGRAPHY');
+const jSession=await call('/api/session',{method:'POST',origin:O.mission});eq(jSession.status,201,'judge mission created');const jid=jSession.data.mission.missionId;
+const jbb1=await call('/api/holds/broadband',{method:'POST',origin:O.broadband,body:{missionId:jid,missionVersion:1,planId:'northstar-gig',planName:'Northstar Gigabit',speedMbps:1000,monthlyPence:3400,contractMonths:24}});eq(jbb1.status,201,'judge v1 gigabit held');
+const jEdit=await call(`/api/mission/${jid}`,{method:'PATCH',origin:O.mission,body:{broadbandMaxMonthlyGbp:30}});eq(jEdit.data.mission.missionVersion,2,'judge human override creates v2');
+const jOld=await call('/api/holds/broadband',{method:'POST',origin:O.broadband,body:{missionId:jid,missionVersion:1,planId:'northstar-gig',planName:'Northstar Gigabit',speedMbps:1000,monthlyPence:3400,contractMonths:24}});eq(jOld.status,409,'judge old v1 action refused');eq(jOld.data.code,'MISSION_STALE','judge stale code');
+const jStale=await call(`/api/progress/${jid}`);eq(jStale.data.broadband.status,'stale','judge old broadband visibly stale');
+const jbb2=await call('/api/holds/broadband',{method:'POST',origin:O.broadband,body:{missionId:jid,missionVersion:2,planId:'northstar-500',planName:'Northstar 500',speedMbps:500,monthlyPence:2700,contractMonths:18}});eq(jbb2.status,201,'judge v2 broadband re-planned');
+const jLost=await call('/api/holds/movers',{method:'POST',origin:O.movers,body:{missionId:jid,missionVersion:2,slotId:'boxfox-1030',startTime:'10:30',pricePence:28900,durationHours:4}});eq(jLost.data.code,'SLOT_NO_LONGER_AVAILABLE','judge moving slot disappears at v2');
+const jmv=await call('/api/holds/movers',{method:'POST',origin:O.movers,body:{missionId:jid,missionVersion:2,slotId:'boxfox-1100',startTime:'11:00',pricePence:31900,durationHours:4}});eq(jmv.status,201,'judge mover recovers at v2');
+const jen=await call('/api/preparations/energy',{method:'POST',origin:O.energy,body:{missionId:jid,missionVersion:2,tariffId:'evergreen-eco',tariffName:'Eco Flex',annualCostPence:95750,renewablePercent:100}});eq(jen.status,201,'judge energy prepared at v2');
+const jReady=await call(`/api/progress/${jid}`);eq(jReady.data.broadband.status,'held','judge broadband current');eq(jReady.data.movers.status,'held','judge movers current');eq(jReady.data.energy.status,'prepared','judge energy current');
+const jApproval=await call(`/api/approval/${jid}`,{method:'POST',origin:O.mission});eq(jApproval.status,201,'judge exact v2 plan can be approved');
+console.log('JUDGE CHOREOGRAPHY PASS',jid);

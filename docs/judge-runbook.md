@@ -15,18 +15,20 @@ Suggested instruction to the browser agent:
 ## Expected journey
 
 1. `get_mission()` reads v1 and service URLs.
-2. Northstar search recommends the fastest broadband inside £35/month; hold it.
-3. BoxFox quotes £289 / £319 / £342. First attempt to hold £289 returns `SLOT_NO_LONGER_AVAILABLE`; choose £319.
-4. Evergreen compares annual cost and recommends a 100% renewable tariff when its premium fits the £100/year rule; prepare it.
-5. ONE shows all three prepared resources, receipts and data categories.
-6. Before approval, any `confirm_*` tool returns `APPROVAL_REQUIRED`.
-7. Human presses **Approve prepared plan** on ONE.
-8. Agent confirms all three simulated commitments with the approval token from `get_progress()`.
-9. ONE shows all three Complete.
+2. Northstar search recommends Gigabit at £34 inside the original £35/month rule; hold it.
+3. Human lowers broadband max £35 → £30 in ONE. Mission becomes v2. The v1 broadband resource shows `Needs re-plan`; an old v1 stateful call returns `MISSION_STALE`. Northstar refreshes its visible requirements to v2 in-place — no page reload is needed.
+4. Agent re-reads ONE, re-searches Northstar in the same tab and holds 500 Mbps at £27 against v2.
+5. BoxFox quotes £289 / £319 / £342 against v2. First attempt to hold £289 returns `SLOT_NO_LONGER_AVAILABLE`; choose £319.
+6. Evergreen compares annual cost at v2 and recommends a 100% renewable tariff when its premium fits the £100/year rule; prepare it.
+7. ONE shows all three current-version prepared resources, receipts and data categories.
+8. Before approval, any `confirm_*` tool returns `APPROVAL_REQUIRED`.
+9. Human presses **Approve prepared plan** on ONE.
+10. Agent confirms all three simulated commitments with the approval token from `get_progress()`.
+11. ONE shows all three Complete.
 
 ## Human-override variant
 
-After the agent searches/holds broadband at v1, lower broadband max from £35 to £30 on ONE. Mission becomes v2. An old stateful action returns `MISSION_STALE`; existing v1 provider resources show `Needs re-plan`; previous approval would become stale. Re-read ONE and re-plan current-version resources.
+The primary judge journey already demonstrates this safely before Movers/Energy are prepared. If the human edits again later, every provider resource and approval from the previous mission version becomes stale and must be re-planned.
 
 ## Important
 
