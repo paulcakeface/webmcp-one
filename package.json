@@ -1,0 +1,12 @@
+{
+  "name": "webmcp-one",
+  "private": true,
+  "version": "0.0.1",
+  "description": "ONE — one goal, many websites, one agent. OpenAI WebMCP Challenge entry.",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs"
+  },
+  "devDependencies": { "esbuild": "^0.25.9" }
+}
