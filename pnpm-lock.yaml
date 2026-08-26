@@ -12,6 +12,8 @@ importers:
         specifier: ^0.25.9
         version: 0.25.12
 
+  apps/api: {}
+
   apps/broadband: {}
 
   apps/energy: {}
@@ -133,7 +135,7 @@ packages:
     os: [netbsd]
 
   '@esbuild/netbsd-x64@0.25.12':
-    resolution: {integrity: sha512-Ld5pTlzPy3YwGec4OuHh1aCVCRvOXdH8DgRjfDy/oumVovmuSzWfnSJg+VtakB9Cm0gxNO9BzWkj6mtO1FMXkQ==}
+    resolution: {integrity: sha512-Ld5pTlzPy3YwGec4OuHh1aCVCRvOXdH8DgRjfDy/oumVovmuSzWfnSJg+VtakB9Cm0gxNO9BzWkj6mtO1FMXKQ==}
     engines: {node: '>=18'}
     cpu: [x64]
     os: [netbsd]
