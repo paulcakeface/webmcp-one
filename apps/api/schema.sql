@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS receipts (
   summary TEXT NOT NULL, recurring_cost_pence INTEGER, one_off_cost_pence INTEGER,
   reversible INTEGER NOT NULL DEFAULT 1, data_categories_json TEXT NOT NULL, created_at TEXT NOT NULL
 );
+CREATE UNIQUE INDEX IF NOT EXISTS receipts_one_confirmation_per_resource ON receipts(mission_id,service,action,resource_id) WHERE status='confirmed';
 CREATE TABLE IF NOT EXISTS broadband_holds (
   id TEXT PRIMARY KEY, mission_id TEXT NOT NULL, mission_version INTEGER NOT NULL,
   plan_id TEXT NOT NULL, status TEXT NOT NULL, created_at TEXT NOT NULL, expires_at TEXT NOT NULL
