@@ -37,5 +37,7 @@ CREATE TABLE IF NOT EXISTS energy_preparations (
   tariff_id TEXT NOT NULL, status TEXT NOT NULL, created_at TEXT NOT NULL
 );
 CREATE TABLE IF NOT EXISTS mission_approvals (
-  mission_id TEXT PRIMARY KEY, mission_version INTEGER NOT NULL, token TEXT NOT NULL, approved_at TEXT NOT NULL
+  mission_id TEXT PRIMARY KEY, mission_version INTEGER NOT NULL, token TEXT NOT NULL,
+  broadband_resource_id TEXT NOT NULL, mover_resource_id TEXT NOT NULL, energy_resource_id TEXT NOT NULL,
+  approved_at TEXT NOT NULL
 );

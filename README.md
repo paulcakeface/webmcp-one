@@ -12,7 +12,7 @@ Start at the ONE Mission Board:
 
 **https://webmcp-one-mission.paul-phillips1988.workers.dev**
 
-**Production acceptance:** the complete four-tab headed Chrome 151 WebMCP judge flow passed on 27 Aug 2026, including human override, stale-intent recovery, provider failure recovery, approval gating and all three simulated confirmations. See [`docs/full-production-webmcp-acceptance.md`](docs/full-production-webmcp-acceptance.md).
+**Production acceptance:** the audit-hardened complete four-tab headed Chrome 151 WebMCP judge flow passed on 27 Aug 2026, including provider data isolation, human override, stale-intent recovery, provider failure recovery, exact-resource approval gating and all three simulated confirmations. See [`docs/full-production-webmcp-acceptance.md`](docs/full-production-webmcp-acceptance.md) and [`docs/pre-submission-bug-audit-2026-08-27.md`](docs/pre-submission-bug-audit-2026-08-27.md).
 
 The demo mission is moving house. ONE creates an isolated mission and connects it to three independent top-level sites:
 
@@ -36,13 +36,15 @@ BoxFox initially offers 10:30 at £289. The first hold attempt deterministically
 
 Search, holds and preparation are reversible. Provider `confirm_*` tools cannot cross the commitment boundary until the human presses **Approve prepared plan** in ONE.
 
-That creates a random approval token bound to the exact current mission version. Confirmations check:
+That creates a random approval token bound to the exact current mission version **and the exact three prepared resource IDs**. Confirmations check:
 
 1. current mission version;
-2. provider resource version;
-3. human approval version/token.
+2. provider resource version and expiry;
+3. the exact resource ID that the human approved;
+4. human approval version/token;
+5. that the rest of the approved bundle has not changed or expired.
 
-Before approval they return `APPROVAL_REQUIRED`. Any later human edit invalidates the approval automatically. All commitments are simulated — no real purchase, booking or energy switch occurs.
+Before approval they return `APPROVAL_REQUIRED`. A provider re-plan invalidates approval. Once any provider is confirmed, mission constraints lock and that service cannot create a second commitment. All commitments are simulated — no real purchase, booking or energy switch occurs.
 
 ## WebMCP tools
 
@@ -75,7 +77,7 @@ The state API can be run locally in Wrangler with a local D1 binding. Then:
 ONE_API_URL=http://127.0.0.1:8790 pnpm test:api
 ```
 
-The integration test covers session isolation, broadband hold, BoxFox slot loss + recovery, energy preparation, denial before approval, human approval, all three confirmations, mission edit, stale resources/approval and refusal to re-approve old resources.
+The integration test covers origin enforcement, provider-scoped data access, hard mission-rule enforcement, no-op version protection, exact-resource approval binding, timed-hold expiry, duplicate-commitment prevention, partial-confirmation recovery, broadband hold, BoxFox slot loss + recovery, energy preparation, denial before approval, all three confirmations, mission edits and stale resources/approval.
 
 ## Architecture
 
@@ -94,6 +96,7 @@ The D1 API stores state and receipts. It never searches a provider, picks a prov
 
 ## Judge/reviewer docs
 
+- [`docs/pre-submission-bug-audit-2026-08-27.md`](docs/pre-submission-bug-audit-2026-08-27.md)
 - [`docs/judge-runbook.md`](docs/judge-runbook.md)
 - [`docs/webmcp-tool-contracts.md`](docs/webmcp-tool-contracts.md)
 - [`docs/threat-model.md`](docs/threat-model.md)
