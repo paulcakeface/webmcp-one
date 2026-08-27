@@ -22,7 +22,7 @@ for(const [app,markers] of Object.entries(expected)){
   if(bad.length){failures+=bad.length;console.error(`${app}: FAIL ${bad.join(', ')}`)}else console.log(`${app}: PASS (${checks.length} checks)`);
 }
 const api=await readFile('dist/api/worker.mjs','utf8');
-const apiMarkers=['/api/session','/api/holds/broadband','/api/holds/movers','/api/preparations/energy','/api/confirm/broadband','/api/confirm/movers','/api/confirm/energy','MISSION_STALE','RESOURCE_STALE','APPROVAL_REQUIRED','PLAN_NOT_READY','SLOT_NO_LONGER_AVAILABLE','mission_approvals','energy_preparations','Access-Control-Allow-Origin'];
+const apiMarkers=['/api/session','/api/holds/broadband','/api/holds/movers','/api/preparations/energy','/api/confirm/broadband','/api/confirm/movers','/api/confirm/energy','MISSION_STALE','RESOURCE_STALE','APPROVAL_REQUIRED','PLAN_NOT_READY','SLOT_NO_LONGER_AVAILABLE','mission_approvals','energy_preparations','Access-Control-Allow-Origin','PLAN_OUTSIDE_MISSION_RULES','SLOT_OUTSIDE_MISSION_RULES','RESOURCE_EXPIRED','expires_at>?','TARIFF_OUTSIDE_MISSION_RULES','SERVICE_ALREADY_CONFIRMED','MISSION_COMMITMENT_STARTED'];
 const apiBad=apiMarkers.filter(m=>!api.includes(m));
 if(apiBad.length){failures+=apiBad.length;console.error(`api: FAIL ${apiBad.join(', ')}`)}else console.log(`api: PASS (${apiMarkers.length} contract checks)`);
 if(failures)process.exit(1);
