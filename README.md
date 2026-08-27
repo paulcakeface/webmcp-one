@@ -97,6 +97,7 @@ The D1 API stores state and receipts. It never searches a provider, picks a prov
 ## Judge/reviewer docs
 
 - [`docs/pre-submission-bug-audit-2026-08-27.md`](docs/pre-submission-bug-audit-2026-08-27.md)
+- [`docs/paranoid-audit-2026-08-27.md`](docs/paranoid-audit-2026-08-27.md)
 - [`docs/judge-runbook.md`](docs/judge-runbook.md)
 - [`docs/webmcp-tool-contracts.md`](docs/webmcp-tool-contracts.md)
 - [`docs/threat-model.md`](docs/threat-model.md)

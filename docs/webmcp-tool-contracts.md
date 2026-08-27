@@ -57,6 +57,10 @@ Only succeeds for the **exact preparation ID the human approved** in the still-c
 - `SLOT_OUTSIDE_MISSION_RULES` — mover hold violates current hard time/price constraints.
 - `TARIFF_OUTSIDE_MISSION_RULES` — renewable preparation exceeds the human's green-premium ceiling.
 - `SERVICE_ALREADY_CONFIRMED` — prevents a second commitment for an already-confirmed service.
+- `PROVIDER_ASSERTION_MISMATCH` — provider write metadata does not match the immutable demo resource identified by its ID; refresh provider state.
+- `PROVIDER_RESOURCE_NOT_FOUND` — state write referenced an unknown provider resource ID.
+- `PLAN_CHANGED_DURING_APPROVAL` — a provider resource changed while the human approval write was racing; refresh and review again.
+- `MISSION_UPDATE_CONFLICT` — a concurrent mission update won the compare-and-set race; refresh before editing again.
 - `MISSION_COMMITMENT_STARTED` — mission constraints are locked once any confirmation has crossed the commitment boundary.
 - `SLOT_NO_LONGER_AVAILABLE` — BoxFox inventory changed; choose another quoted slot.
 
