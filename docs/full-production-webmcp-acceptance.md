@@ -36,6 +36,8 @@ All provider actions below were invoked with `document.modelContext.getTools()` 
 
 ## Accepted artefact hashes
 
+The hashes immediately below are **historical acceptance evidence from the earlier release**, retained to document the progression. The current accepted release is the audit-hardened hash set later in this document.
+
 Production release before the in-place Northstar stale-refresh hardening:
 
 - Mission: `3a1101c9334c195dc5470c8dd2d33a8857aee9316558521131e0cd2a288e28d2`
@@ -58,3 +60,20 @@ The product was improved rather than working around it in the judge script: on `
 ## Outcome
 
 The production product now proves the full thesis: one human goal is composed across independent WebMCP-native websites, the human can change intent mid-flight, provider reality can change, stale actions are refused, the agent can recover, commitments remain behind explicit human approval, and the Mission Board keeps the whole journey inspectable.
+
+
+## Audit-hardened acceptance update — later 27 Aug 2026
+
+A subsequent adversarial pre-submission audit found and fixed additional state/privacy defects. The audit-hardened production build then repeated the **full headed Chrome 151 WebMCP flow successfully**, with acceptance mission `move-7f95a4ae-fb25-4abe-ae9b-3131eea27d75`.
+
+Additional accepted guarantees include origin-scoped provider reads, server-side hard-rule enforcement, real timed-hold expiry, no-op mission version protection, exact-resource approval binding, bundle-wide approval integrity, duplicate-commitment prevention and post-confirmation mission locking.
+
+Audit release hashes:
+
+- Mission: `5f2169588ae6aa68404fbc2ead6314a7a3ac639e81910fb0a67a75e1a26fa213`
+- Broadband: `72d3c9ac07520d4ddc40a22328ca3b296489a89089a06dfbd65f64563d4a166b`
+- Movers: `c233935464cc9b8edd5a51876b476672151341c48e1803cc1f826feae80427c9`
+- Energy: `bde32758ef48e55a70302024b1d59d54b00dd4eb33b2fe1f00c5e607b6ba3432`
+- API: `15d91bfeca5a647ba35cf0050844f63fd73e28bfa9d77082e8db3423f297d7e2`
+
+See [`pre-submission-bug-audit-2026-08-27.md`](pre-submission-bug-audit-2026-08-27.md) for the full audit evidence.

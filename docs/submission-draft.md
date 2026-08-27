@@ -42,7 +42,7 @@ That produces three UX properties that are difficult to get from conventional br
 
 1. **Intent stays authoritative.** If the human changes the budget, stale provider actions refuse to continue instead of silently completing the old plan.
 2. **Recovery is structured.** When inventory changes, the provider returns a machine-readable failure and the agent can recover inside the task rather than restarting the journey.
-3. **Commitment stays human.** Reversible research/preparation can proceed autonomously, while final simulated orders remain behind explicit approval tied to the current mission.
+3. **Commitment stays human.** Reversible research/preparation can proceed autonomously, while final simulated orders remain behind explicit approval tied to the exact current prepared choices and mission version.
 
 ## What humans and agents can do together that was difficult before
 
